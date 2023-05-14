@@ -3,8 +3,82 @@
 # Start Date: 09May23
 # Finish Date: TBD
 
-# program imports
+# program imports 
+import random # for card shuffling 
 
+# object oriented classes
+class Card:
+    def __init__(self, suit, value):
+        self.suit = suit
+        self.value = value
+    
+    def show(self):
+        print("{} of {}".format(self.value, self.suit))
+
+class Deck:
+    def __init__(self):
+        self.cards = []
+        self.build()
+
+    def build(self):
+        for s in ["Spades", "Clubs", "Diamonds", "Hearts"]:
+            for v in range(1, 14):
+                self.cards.append(Card(s,v))
+
+    def show(self):
+        for c in self.cards:
+            c.show()
+
+    def shuffle(self):
+        for i in range(len(self.cards) -1, 0, 1):
+            r = random.randint(0, i)
+            self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
+
+    def drawCard(self):
+        return self.cards.pop()
+    
+class Player:
+    def __init__(self):
+        self.name = "Player 1"
+        self.hand = []
+        self.bank = 500
+        self.total = 0
+        self.bet = 0
+
+    def draw(self, deck):
+        self.hand.append(deck.drawCard())
+        return self
+    
+    def showHand(self):
+        for card in self.hand:
+            card.show()
+
+    def showTotal(self):
+        for card  in self.hand:
+            self.total += card.value
+        return self.total
+
+    def increaseBet(self, betAmount):
+        self.bet += betAmount
+
+class Dealer:
+    def _init__(self):
+        self.name = "Dealer"
+        self.hand = []
+        self.total = 0
+
+    def draw(self, deck):
+        self.hand.append(deck.drawCard())
+        return self
+    
+    def showHand(self):
+        for card in self.hand:
+            card.show()
+
+    def showTotal(self):
+        for card in self.hand:
+            self.total += card.value
+        return self.total
 
 # main function
 def main():
@@ -50,21 +124,10 @@ def errorHandling(menuSelection):
 # Blackjack function
 def blackjack():
 
-    # player variables
-    bank = 500
-    bet = 0
-    bust = False
-    total = 0
-    hand = []
+    playerBust = False
+    dealerBust = False
 
-    # dealer variables
-    bust = False
-    total = 0
-    hand = []
-    deck = ["A","A","A","A",2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10]
-
-
-
+    
 # function calls main when program is run
 if __name__ == "__main__":
     print(main())
