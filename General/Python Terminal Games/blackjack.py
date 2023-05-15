@@ -100,7 +100,7 @@ def main():
     # first option tree for the player (not correctly written, look up switch cases for syntax)
     match menuSelect:
         case "1":
-            return "Blackjack coming soon!\n"
+            blackjack()
         case "2":
             return "Thank you for playing!\n"
         case "3":
@@ -127,7 +127,22 @@ def blackjack():
     playerBust = False
     dealerBust = False
 
-    
+    # build deck and initialize player and dealer objects
+    deck1 = Deck()
+    deck1.build()
+    deck1.shuffle()
+
+    player1 = Player()
+    dealer = Dealer()
+
+    # first round draws for both the player and the dealer
+    player1.draw()
+    player1.draw()
+
+    dealer.draw()
+    dealer.draw()
+    return
+
 # function calls main when program is run
 if __name__ == "__main__":
     print(main())
