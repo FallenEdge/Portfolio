@@ -139,8 +139,8 @@ def blackjack():
     player1.draw(deck1)
     player1.draw(deck1)
 
-    dealer.draw(deck1)
-    dealer.draw(deck1)
+    # dealer.draw(deck1)
+    # dealer.draw(deck1)
     return
 
 # function calls main when program is run
