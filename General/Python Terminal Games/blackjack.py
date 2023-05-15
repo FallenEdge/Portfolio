@@ -136,11 +136,11 @@ def blackjack():
     dealer = Dealer()
 
     # first round draws for both the player and the dealer
-    player1.draw()
-    player1.draw()
+    player1.draw(deck1)
+    player1.draw(deck1)
 
-    dealer.draw()
-    dealer.draw()
+    dealer.draw(deck1)
+    dealer.draw(deck1)
     return
 
 # function calls main when program is run
