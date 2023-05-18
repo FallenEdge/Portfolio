@@ -5,6 +5,7 @@
 
 # program imports 
 import random # for card shuffling 
+import sys
 
 # object oriented classes
 class Card:
@@ -53,16 +54,20 @@ class Player:
         for card in self.hand:
             card.show()
 
-    def showTotal(self):
-        for card  in self.hand:
-            self.total += card.value
-        return self.total
-
     def increaseBet(self, betAmount):
         self.bet += betAmount
 
+    def showTotal(self):
+        for card in self.hand:
+            if card.value > 10:
+                self.total += 10
+            else:
+                self.total += card.value
+        
+        return self.total
+
 class Dealer:
-    def _init__(self):
+    def __init__(self):
         self.name = "Dealer"
         self.hand = []
         self.total = 0
@@ -77,7 +82,11 @@ class Dealer:
 
     def showTotal(self):
         for card in self.hand:
-            self.total += card.value
+            if card.value > 10:
+                self.total += 10
+            else:
+                self.total += card.value
+        
         return self.total
 
 # main function
@@ -136,11 +145,21 @@ def blackjack():
     dealer = Dealer()
 
     # first round draws for both the player and the dealer
+    print("\nPlayer 1 Cards:")
     player1.draw(deck1)
     player1.draw(deck1)
+    player1.showHand()
+    print("\nCard Total: " + str(player1.showTotal()) + "\n")
 
-    # dealer.draw(deck1)
-    # dealer.draw(deck1)
+    print("Dealer's Cards:")
+    dealer.draw(deck1)
+    dealer.draw(deck1)
+    dealer.showHand()
+    print("\nCard Total: " + str(dealer.showTotal()) + "\n")
+
+    # display menu options for player
+
+    quit()
     return
 
 # function calls main when program is run
